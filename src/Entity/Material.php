@@ -36,11 +36,17 @@ class Material
      */
     private $createdAt;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getType(): ?string
     {
         return $this->type;
@@ -53,6 +59,9 @@ class Material
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getNumber(): ?string
     {
         return $this->number;
@@ -65,6 +74,9 @@ class Material
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getDescription(): ?string
     {
         return $this->description;
@@ -77,6 +89,9 @@ class Material
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
