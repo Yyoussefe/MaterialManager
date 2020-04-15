@@ -22,4 +22,5 @@ class HomeController extends AbstractController
     {
         return $this->render('home/aboutUs.html.twig');
     }
+
 }
