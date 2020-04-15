@@ -42,6 +42,8 @@ class HomeControllerTest extends WebTestCase
         $client->request('GET', '/admin/createMaterial');
         // On vérifie si la requete HTTP est OK
         $this->assertResponseIsSuccessful();
+        // On vérifie si le message ci dessous est présent dans le titre principal de la page
+        $this->assertSelectorTextContains('h1','Create new material');
         // On cherche s'il y a un formulaire qui contient un bouton dont la valeur est "Create". On utilise ce formulaire pour soumettre les valeurs de test ci dessous
         $client->submitForm('Create', [
             'form[type]' => 'téléphone',

@@ -28,15 +28,16 @@ class HomeController extends AbstractController
     /**
      * @Route("/admin/createMaterial", name="createMaterial")
      */
-    public function createMaterial(Request $request){
+    public function createMaterial(Request $request)
+    {
         $material = new Material();
         $form = $this->createFormBuilder($material)
-                     ->add("type")
-                     ->add("number")
-                     ->add("description")
-                     ->getForm();
+            ->add("type")
+            ->add("number")
+            ->add("description")
+            ->getForm();
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if($form->isSubmitted() && $form->isValid()) {
             $material ->setCreatedAt(new \DateTime());
             $objectManager = $this->getDoctrine()->getManager();
             $objectManager->persist($material);
@@ -45,8 +46,10 @@ class HomeController extends AbstractController
             // redirect to same page in order to clear the form after submission
             return $this->redirect($request->getUri());
         }
-        return $this->render('admin/createMaterial.html.twig', [
+        return $this->render(
+            'admin/createMaterial.html.twig', [
             "materialForm" => $form->createView()
-        ]);
+            ]
+        );
     }
 }
