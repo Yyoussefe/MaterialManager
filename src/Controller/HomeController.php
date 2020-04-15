@@ -41,6 +41,9 @@ class HomeController extends AbstractController
             $objectManager = $this->getDoctrine()->getManager();
             $objectManager->persist($material);
             $objectManager->flush();
+            
+            // redirect to same page in order to clear the form after submission
+            return $this->redirect($request->getUri());
         }
         return $this->render('admin/createMaterial.html.twig', [
             "materialForm" => $form->createView()
