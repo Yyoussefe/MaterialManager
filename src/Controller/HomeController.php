@@ -1,4 +1,15 @@
 <?php
+/**
+ * File HomeController.php
+ * 
+ * PHP version 7.3.5
+ * 
+ * @category Home
+ * @package  App\Controller
+ * @author   ELHOR Youssef <elhor.yyoussef@hotmail.com>
+ * @license  http://licence-test licence-test
+ * @link     http://127.0.0.1:8000/home
+ */
 
 namespace App\Controller;
 
@@ -7,10 +18,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * HomeController class
+ * 
+ * @category Home
+ * @package  App\Controller
+ * @author   ELHOR Youssef <elhor.yyoussef@hotmail.com>
+ * @license  http://licence-test licence-test
+ * @link     http://127.0.0.1:8000/home
+ */
 class HomeController extends AbstractController
 {
     /**
+     * Rendering the index template (home page)
+     * 
      * @Route("/home", name="home")
+     * 
+     * @return template
      */
     public function index()
     {
@@ -18,7 +42,11 @@ class HomeController extends AbstractController
     }
 
     /**
+     * Rendering the about us template (information page)
+     * 
      * @Route("/aboutUs", name="aboutUs")
+     * 
+     * @return template
      */
     public function aboutUs()
     {
@@ -26,7 +54,13 @@ class HomeController extends AbstractController
     }
 
     /**
+     * Rendering the create new material template (page for new material creation)
+     * 
+     * @param Request $request holds information about the client request
+     * 
      * @Route("/admin/createMaterial", name="createMaterial")
+     * 
+     * @return template
      */
     public function createMaterial(Request $request)
     {
@@ -37,7 +71,7 @@ class HomeController extends AbstractController
             ->add("description")
             ->getForm();
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $material ->setCreatedAt(new \DateTime());
             $objectManager = $this->getDoctrine()->getManager();
             $objectManager->persist($material);
