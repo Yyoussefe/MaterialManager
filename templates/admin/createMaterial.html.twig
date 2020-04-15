@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create new material{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>Create new material</h1>
+
+        {{ form_start(materialForm) }}
+
+            {{ form_label(materialForm.type,'Type') }}
+            {{ form_widget(materialForm.type, {'attr':{'class':'form-control', 'id':'exampleInputEmail1', 'aria-describedby':'emailHelp', 'placeholder':'Enter material type'}}) }}
+            
+            {{ form_label(materialForm.number,'Number') }}
+            {{ form_widget(materialForm.number, {'attr':{'class':'form-control', 'id':'exampleInputEmail1', 'aria-describedby':'emailHelp', 'placeholder':'Enter material number'}}) }}
+
+            {{ form_label(materialForm.description,'Description') }}
+            {{ form_widget(materialForm.description, {'attr':{'class':'form-control', 'id':'exampleInputEmail1', 'aria-describedby':'emailHelp', 'placeholder':'Enter material description'}}) }}
+
+            <br/>
+            <div class="text-left">
+                <button class="btn btn-lg btn-primary">Create</button>
+                <a href="{{path('home')}}" class="btn btn-lg btn-primary" role="button">Back</a>
+            </div> 
+        {{ form_end(materialForm) }}
+
+        
+    </div>
+
+{% endblock %}
+

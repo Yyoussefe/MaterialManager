@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Material;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
@@ -26,7 +28,22 @@ class HomeController extends AbstractController
     /**
      * @Route("/admin/createMaterial", name="createMaterial")
      */
-    public function createMaterial(){
-        
+    public function createMaterial(Request $request){
+        $material = new Material();
+        $form = $this->createFormBuilder($material)
+                     ->add("type")
+                     ->add("number")
+                     ->add("description")
+                     ->getForm();
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $material ->setCreatedAt(new \DateTime());
+            $objectManager = $this->getDoctrine()->getManager();
+            $objectManager->persist($material);
+            $objectManager->flush();
+        }
+        return $this->render('admin/createMaterial.html.twig', [
+            "materialForm" => $form->createView()
+        ]);
     }
 }
